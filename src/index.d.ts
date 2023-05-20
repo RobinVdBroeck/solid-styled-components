@@ -2,10 +2,10 @@ import { Properties as CSSProperties } from "csstype";
 import { JSX, Component } from "solid-js";
 
 // This type is only available in Solid 1.5 or later.
-type ValidComponent =
-  | keyof JSX.IntrinsicElements
-  | Component<any>
-  | (string & {});
+// type ValidComponent =
+//   | keyof JSX.IntrinsicElements
+//   | Component<any>
+//   | (string & {});
 
 export interface DefaultTheme {}
 export interface CSSAttribute extends CSSProperties {
@@ -37,9 +37,6 @@ export declare function css(
   tag: TemplateStringsArray,
   ...tagArgs: TagArgs
 ): string;
-export declare function shouldForwardProp(
-  predicate: (x: string) => boolean
-): (props: string[]) => string[];
 export declare function setup(
   prefixer: null | ((key: string, value: any) => string),
   shouldForwardProp?: null | ((props: string[]) => string[])
@@ -51,30 +48,30 @@ export declare function ThemeProvider<
   }
 >(props: T): JSX.Element;
 export declare function useTheme(): DefaultTheme;
-export interface ThemeProp {
-  theme?: DefaultTheme;
-}
-interface AsProps {
-  as?: ValidComponent;
-}
-type StylesFn<T> = <P>(
-  styles: StylesArg<P & T & AsProps & ThemeProp>,
-) => Component<P & T & AsProps> & {
-  class: (props: P & T & AsProps) => string;
-};
-type TagFn<T> = <P>(
-  tag: TemplateStringsArray,
-  ...args: TagArgs<P & T & AsProps & ThemeProp>,
-) => Component<P & T & AsProps> & {
-  class: (props: P & T & AsProps) => string;
-};
-type StylingFn<T> = StylesFn<T> & TagFn<T>;
-export interface Styled {
-  <T extends keyof JSX.IntrinsicElements>(
-    element: T | Component<JSX.IntrinsicElements[T]>
-  ): StylingFn<JSX.IntrinsicElements[T]>;
-  <T>(component: Component<T>): StylingFn<T>;
-}
+// export interface ThemeProp {
+//   theme?: DefaultTheme;
+// }
+// interface AsProps {
+//   as?: ValidComponent;
+// }
+// type StylesFn<T> = <P>(
+//   styles: StylesArg<P & T & AsProps & ThemeProp>,
+// ) => Component<P & T & AsProps> & {
+//   class: (props: P & T & AsProps) => string;
+// };
+// type TagFn<T> = <P>(
+//   tag: TemplateStringsArray,
+//   ...args: TagArgs<P & T & AsProps & ThemeProp>,
+// ) => Component<P & T & AsProps> & {
+//   class: (props: P & T & AsProps) => string;
+// };
+// type StylingFn<T> = StylesFn<T> & TagFn<T>;
+// export interface Styled {
+//   <T extends keyof JSX.IntrinsicElements>(
+//     element: T | Component<JSX.IntrinsicElements[T]>
+//   ): StylingFn<JSX.IntrinsicElements[T]>;
+//   <T>(component: Component<T>): StylingFn<T>;
+// }
 export declare const styled: Styled & {
   [element in keyof JSX.IntrinsicElements]: StylingFn<JSX.IntrinsicElements[element]>;
 };
